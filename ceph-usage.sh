@@ -9,7 +9,7 @@ check="checkrw.sh"
 
 ### DO NOT EDIT BELOW ###
 _df() {
-	df=( `ceph --id zabbix osd df tree|\
+	df=( `$ceph osd df tree|\
 		awk '$10 == "region" {print $5" "$7" "$10"-"$11}; \
 		$10 == "host" {print $5" "$7" "$10"-"$11}; \
 		$11 ~ /osd/ {print $6" "$8" "$11}'` )
