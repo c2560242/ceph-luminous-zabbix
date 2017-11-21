@@ -1,2 +1,1 @@
-# zabbix-scripts
-A collection of scripts for monitoring ceph luminous
+# Small collection of scripts for ceph luminous zabbix monitoring
