@@ -2,9 +2,10 @@
 
 logfile="/tmp/ceph-pg-stat.log"
 ceph="/usr/bin/ceph"
-check="checkrw.sh"
 
 ###
+. functions.sh
+
 _dump() {
 	$ceph pg stat >$logfile
 }

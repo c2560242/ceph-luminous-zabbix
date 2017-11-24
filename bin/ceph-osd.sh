@@ -2,9 +2,10 @@
 
 ceph_bin="/usr/bin/ceph"
 logfile="/tmp/ceph-osd.log"
-check="checkrw.sh"
 
 ###
+. functions.sh
+
 _dump() {
 	osd=( `ceph osd tree|awk '/osd/ {print $4" "$5}'` )
 	echo ${osd[@]} >$logfile

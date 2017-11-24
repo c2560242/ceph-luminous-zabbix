@@ -2,9 +2,10 @@
 
 ceph="/usr/bin/ceph"
 logfile="/tmp/ceph-mons.log"
-check="checkrw.sh"
 
 ###
+. functions.sh
+
 _dump() {
 	$ceph -s|awk '/mon: / {print}' > $logfile
 }
@@ -39,7 +40,7 @@ _mon_out() {
 
 ###
 case $1 in
-	"dump") . $check; _dump; _check_w && _check_r ;;
+	"dump") _dump; _check_w && _check_r ;;
 	"discovery") _dump; _mons; _disc_mons ;;
 	"out") _mons; _mon_out $2 ;;
 	*)

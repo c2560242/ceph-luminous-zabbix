@@ -5,9 +5,10 @@
 
 logfile="/tmp/ceph-df.log"
 ceph="/usr/bin/ceph"
-check="checkrw.sh"
 
 ### DO NOT EDIT BELOW ###
+. fuctions.sh
+
 _df() {
 	df=( `$ceph osd df tree|\
 		awk '$10 == "region" {print $4" "$5" "$7" "$10"-"$11}; \
@@ -43,37 +44,19 @@ _percent_usage() {
 }
 
 _usage() {
-	usage=`awk '/'$1'/ { for (x=1;x<=NF;x++) if ($x == "'$1'") print $(x-2) }' $logfile`
-	cut=`printf $usage|tr -d TGMK`
-	if [[ `echo $usage|egrep G$` =~ "G" ]]; then
-		echo $(($cut * 1024 * 1024 * 1024));
-	elif [[ `echo $usage|egrep T$` =~ "T" ]]; then
-		echo $(($cut * 1024 * 1024 * 1024 * 1024));
-	elif [[ `echo $usage|egrep M$` =~ "M" ]]; then
-		echo $(($cut * 1024 * 1024))
-	elif [[ `echo $usage|egrep K$` =~ "K" ]]; then
-		echo $(($cut * 1024));
-	fi
+	took=`awk '/'$1'/ { for (x=1;x<=NF;x++) if ($x == "'$1'") print $(x-2) }' $logfile`
+	_convert;
 }
 
 _total() {
-	total=`awk '/'$1'/ { for (x=1;x<=NF;x++) if ($x == "'$1'") print $(x-3) }' $logfile`
-	cut=`printf $total|tr -d TGMK`
-	if [[ `echo $total|egrep G$` =~ "G" ]]; then
-		echo $(($cut * 1024 * 1024 * 1024));
-	elif [[ `echo $total|egrep T$` =~ "T" ]]; then
-		echo $(($cut * 1024 * 1024 * 1024 * 1024));
-	elif [[ `echo $total|egrep M$` =~ "M" ]]; then
-		echo $(($cut * 1024 * 1024))
-	elif [[ `echo $total|egrep K$` =~ "K" ]]; then
-		echo $(($cut * 1024));
-	fi
+	took=`awk '/'$1'/ { for (x=1;x<=NF;x++) if ($x == "'$1'") print $(x-3) }' $logfile`
+	_convert;
 }
 
 ###
 case $1 in
 	"discovery") _df; _disc; echo ${df[@]} >$logfile ;;
-	"dump") _df; . $check ; _check_w && echo ${df[@]} >$logfile; _check_r ;;
+	"dump") _df; _check_w && echo ${df[@]} >$logfile; _check_r ;;
 	"percent") _percent_usage $2 ;; 
 	"usage") _usage $2 ;; 
 	"total") _total $2 ;;
