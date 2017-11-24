@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # needs second column 'CLASS' for osds to be set;
-# otherwise offset for osds must be decreased by 1.
+# otherwise offset for osds must be increased by 1.
 
 logfile="/tmp/ceph-df.log"
 ceph="/usr/bin/ceph"
