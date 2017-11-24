@@ -59,7 +59,7 @@ _usage() {
 ###
 case $1 in
 	"discovery") _df; _disc; echo ${df[@]} >$logfile ;;
-	"dump") _df; _check_w && echo ${df[@]} >$logfile; _check_r ;;
+	"dump") _df; . $check ; _check_w && echo ${df[@]} >$logfile; _check_r ;;
 	"percent") _percent_usage $2 ;; 
 	"usage") _usage $2 ;; 
 	*)
