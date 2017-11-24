@@ -4,7 +4,7 @@ ceph="/usr/bin/ceph"
 logfile="/tmp/ceph-mons.log"
 
 ###
-. functions.sh
+. ceph-functions.sh
 
 _dump() {
 	$ceph -s|awk '/mon: / {print}' > $logfile

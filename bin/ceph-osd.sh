@@ -4,7 +4,7 @@ ceph_bin="/usr/bin/ceph"
 logfile="/tmp/ceph-osd.log"
 
 ###
-. functions.sh
+. ceph-functions.sh
 
 _dump() {
 	osd=( `ceph osd tree|awk '/osd/ {print $4" "$5}'` )

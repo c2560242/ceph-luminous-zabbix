@@ -4,7 +4,7 @@ logfile="/tmp/ceph-pg-stat.log"
 ceph="/usr/bin/ceph"
 
 ###
-. functions.sh
+. ceph-functions.sh
 
 _dump() {
 	$ceph pg stat >$logfile
