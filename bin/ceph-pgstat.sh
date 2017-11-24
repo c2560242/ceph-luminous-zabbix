@@ -6,6 +6,7 @@ ceph="/usr/bin/ceph"
 ###
 . ceph-functions.sh
 
+### do not edit below
 _dump() {
 	$ceph pg stat >$logfile
 }

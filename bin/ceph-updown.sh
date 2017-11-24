@@ -6,6 +6,7 @@ logfile="/tmp/ceph-osd.log"
 ###
 . ceph-functions.sh
 
+### do not edit below
 _dump() {
 	osd=( `$ceph osd tree|awk '/osd/ {print $4" "$5}'` )
 	echo ${osd[@]} >$logfile

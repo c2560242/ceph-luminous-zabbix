@@ -6,6 +6,7 @@ logfile="/tmp/ceph-mons.log"
 ###
 . ceph-functions.sh
 
+### do not edit below
 _dump() {
 	$ceph -s|awk '/mon: / {print}' > $logfile
 }

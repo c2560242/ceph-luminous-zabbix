@@ -5,15 +5,17 @@
 
 logfile="/tmp/ceph-df.log"
 ceph="/usr/bin/ceph"
+offset="0"
 
-### DO NOT EDIT BELOW ###
-. fuctions.sh
+###
+. ceph-functions.sh
 
+### do not edit below
 _df() {
 	df=( `$ceph osd df tree|\
 		awk '$10 == "region" {print $4" "$5" "$7" "$10"-"$11}; \
 		$10 == "host" {print $4" "$5" "$7" "$10"-"$11}; \
-		$11 ~ /osd/ {print $5" "$6" "$8" "$11}'` )
+		$(11-'$offset') ~ /osd/ {print $(5-'$offset')" "$(6-'$offset')" "$(8-'$offset')" "$(11-'$offset')}'` )
 }
 
 
