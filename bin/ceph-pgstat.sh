@@ -2,7 +2,7 @@
 
 logfile="/tmp/ceph-pg-stat.log"
 ceph="/usr/bin/ceph"
-check="/usr/local/bin/checkrw.sh"
+check="checkrw.sh"
 
 ###
 _dump() {

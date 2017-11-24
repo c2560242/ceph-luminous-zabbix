@@ -2,7 +2,7 @@
 
 ceph="/usr/bin/ceph"
 logfile="/tmp/ceph-mons.log"
-check="/usr/local/bin/checkrw.sh"
+check="checkrw.sh"
 
 ###
 _dump() {
