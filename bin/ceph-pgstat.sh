@@ -17,7 +17,7 @@ _stat() {
 
 ###
 case $1 in
-	"dump") . $check; _dump; _check_w && _check_r ;;
+	"dump") _dump; _check_w && _check_r ;;
 	$1) score=`_stat $1`;
 	if [[ $score == "" ]]; then
 		echo 0; else

@@ -18,7 +18,7 @@ _updown() {
 
 ###
 case $1 in
-	"dump") . $check; _dump; _check_w && _check_r ;;
+	"dump") _dump; _check_w && _check_r ;;
 	$1) _updown $1 ;;
 	*)
 esac
